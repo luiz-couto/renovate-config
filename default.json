@@ -9,10 +9,12 @@
       ],
       "matchStringsStrategy": "combination",
       "matchStrings": [
-        "luiz-couto/ops-actions-tests-v3/.github/actions/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
-        "luiz-couto/tutorial-go-math-island/actions/(?<depName>.*?)@main #\\s*(?<currentDigest>.*)"
+        "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
+        "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
+        
+        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>.*?)@main #\\s*(?<currentDigest>.*)"
       ],
-      "autoReplaceStringTemplate": "luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
+      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
       "datasourceTemplate": "git-refs",
       "currentValueTemplate": "main",
       "packageNameTemplate": "https://github.com/luiz-couto/tutorial-go-math-island",
