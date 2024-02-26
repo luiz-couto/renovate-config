@@ -64,7 +64,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ inputs.token }}
-          branch: renovate-update-devex
+          branch: renovate/reconfigure
           commit-message: "updated renovate.json"
 
   
