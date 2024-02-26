@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "customManagers": [
+ "customManagers": [
     {
       "customType": "regex",
       "fileMatch": [
@@ -9,16 +9,41 @@
       ],
       "matchStringsStrategy": "combination",
       "matchStrings": [
-        "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
-        "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
+        "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>docker-publish)@\\s*(?<currentDigest>.*)",
+        "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>docker-publish)@\\s*(?<currentDigest>.*)",
         
-        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>.*?)@main #\\s*(?<currentDigest>.*)"
+        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>docker-publish)@main #\\s*(?<currentDigest>.*)"
       ],
       "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
       "datasourceTemplate": "git-refs",
       "currentValueTemplate": "main",
       "packageNameTemplate": "https://github.com/luiz-couto/tutorial-go-math-island",
       "depTypeTemplate": "action"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$",
+        "(^|/)action\\.ya?ml$"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>add-deployment-files)@\\s*(?<currentDigest>.*)",
+        "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>add-deployment-files)@\\s*(?<currentDigest>.*)",
+        
+        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>add-deployment-files)@main #\\s*(?<currentDigest>.*)"
+      ],
+      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
+      "datasourceTemplate": "git-refs",
+      "currentValueTemplate": "main",
+      "packageNameTemplate": "https://github.com/luiz-couto/tutorial-go-math-island",
+      "depTypeTemplate": "action"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["https://github.com/luiz-couto/tutorial-go-math-island"],
+      "groupName": "actions update"
     }
   ]
 }
