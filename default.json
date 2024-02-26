@@ -7,7 +7,7 @@
         "(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$",
         "(^|/)action\\.ya?ml$"
       ],
-      "matchStringsStrategy": "combination",
+      "matchStringsStrategy": "recursive",
       "matchStrings": [
         "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
         "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>.*?)@\\s*(?<currentDigest>.*)",
