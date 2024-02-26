@@ -12,9 +12,9 @@
         "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>docker-publish)@\\s*(?<currentDigest>.*)",
         "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>docker-publish)@\\s*(?<currentDigest>.*)",
         
-        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>docker-publish)@main #\\s*(?<currentDigest>.*)"
+        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>docker-publish)@v1.0.0 #\\s*(?<currentDigest>.*)"
       ],
-      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
+      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@v1.0.0 #{{{newDigest}}}",
       "datasourceTemplate": "git-refs",
       "currentValueTemplate": "main",
       "packageNameTemplate": "https://github.com/luiz-couto/tutorial-go-math-island",
@@ -31,9 +31,9 @@
         "uses: luiz-couto/(?:ops-actions|gcp-auth-action)/(?<depName>add-deployment-files)@\\s*(?<currentDigest>.*)",
         "uses: luiz-couto/.github/.github/(?:workflows|actions)/(?<depName>add-deployment-files)@\\s*(?<currentDigest>.*)",
         
-        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>add-deployment-files)@main #\\s*(?<currentDigest>.*)"
+        "uses: luiz-couto/tutorial-go-math-island/actions/(?<depName>add-deployment-files)@v1.0.0 #\\s*(?<currentDigest>.*)"
       ],
-      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@main #{{{newDigest}}}",
+      "autoReplaceStringTemplate": "uses: luiz-couto/tutorial-go-math-island/actions/{{{depName}}}@v1.0.0 #{{{newDigest}}}",
       "datasourceTemplate": "git-refs",
       "currentValueTemplate": "main",
       "packageNameTemplate": "https://github.com/luiz-couto/tutorial-go-math-island",
