@@ -1,0 +1,68 @@
+name: Update Renovate JSON
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        type: string
+        description: Which repository to update the renovate.json file
+        required: true
+      token:
+        type: string
+        description: Github token
+        required: true
+      ifRenovateNotInstalled:
+        type: choice
+        description: Which is the behavior when renovate is not configured in the repo
+        options:
+          - Configure it
+          - Fail workflow
+
+jobs:
+  updateRenovateJSON:
+    name: Update and create PR for the renovate.json file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repository }}
+
+      - name: Check for renovate file (create or fail)
+        id: check
+        shell: bash
+        run: |
+          if [ -f renovate.json ]; then
+            echo configured='true' >> $GITHUB_OUTPUT
+          else
+            echo configured='false' >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Fail workflow if not installed and not allowed to configure
+        shell: bash
+        if: ${{ steps.check.outputs.configured == 'false' && inputs.ifRenovateNotInstalled == 'Fail workflow' }}
+        run: |
+          echo "Renovate not configured and ifRenovateNotInstalled is set to not configure it"
+          exit 1
+
+      - name: Configure renovate
+        if: ${{ steps.check.outputs.configured == 'false' && inputs.ifRenovateNotInstalled == 'Configure it' }}
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.3
+        with:
+          name: "renovate.json"
+          json: '{"$schema":"https://docs.renovatebot.com/renovate-schema.json", "extends":["config:recommended"]}'
+
+      - name: Update renovate.json
+        shell: bash
+        run: |
+          echo "`jq '.extends += ["github>luiz-couto/renovate-config"]' renovate.json`" > renovate.json
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ inputs.token }}
+          branch: renovate-update-devex
+          commit-message: "updated renovate.json"
+
+  
