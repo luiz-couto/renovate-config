@@ -26,7 +26,9 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
         with:
+          token: ${{ inputs.token }}
           repository: ${{ inputs.repository }}
+          
 
       - name: Check for renovate file (create or fail)
         id: check
