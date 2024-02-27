@@ -5,7 +5,7 @@
       "customType": "regex",
       "fileMatch": [
         "(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$",
-        "(^|/)action\\.ya?ml$"
+        "(^|.*/)action\\.ya?ml$"
       ],
       "matchStringsStrategy": "combination",
       "matchStrings": [
